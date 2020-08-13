@@ -108,6 +108,33 @@ h2 {
 
     @media screen and (max-width: 800px) {
       display: none;
+
+      &--burger{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &--burger .menu__link{
+        width: 100%;
+        text-align: center;
+        margin: 0 0 10px 0;
+        box-sizing: border-box;
+
+        &:first-child{
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+
+        &:hover, &:focus{
+          background-color: $colorBase;
+          color: white;
+
+          &::after{
+            width: 0;
+          }
+        }
+      }
     }
   }
 
@@ -154,8 +181,17 @@ h2 {
     font-weight: bold;
     transition-duration: 0.3s;
 
+    &--burger{
+      display: block;
+    }
+
     @media screen and (max-width: 800px) {
       display: none;
+
+      &--burger{
+        display: block;
+        margin: 0 auto 20px auto;
+      }
     }
 
     &:hover,
@@ -180,7 +216,36 @@ h2 {
     border: none;
     width: 100%;
     height: 2px;
+    pointer-events: none;
     background-color: $colorBase;
+  }
+}
+
+.burger-menu {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.705);
+  border-radius: 20px;
+  box-sizing: border-box;
+  position: relative;
+  
+
+  &__wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 101;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    &.active{
+      display: flex;
+    }
   }
 }
 
@@ -202,7 +267,7 @@ h2 {
       );
 
       @media screen and (max-width: 800px) {
-          padding: 130px 0 50px 0;
+        padding: 130px 0 50px 0;
       }
     }
   }
@@ -213,8 +278,12 @@ h2 {
     font-size: 16px;
     text-align: right;
 
-    @media screen and (max-width: 800px){
-        margin: 0 0 10px 0;
+    @media screen and (max-width: 800px) {
+      margin: 0 0 10px 0;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 12px;
     }
   }
 
@@ -231,9 +300,14 @@ h2 {
     margin: 0 0 70px 0;
 
     @media screen and (max-width: 800px) {
-        margin: 0 0 15px 0;
-        font-size: 40px;
-        line-height: 30px;
+      margin: 0 0 15px 0;
+      font-size: 40px;
+      line-height: 30px;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 22px;
+      box-sizing: border-box;
     }
   }
 
@@ -257,8 +331,8 @@ h2 {
       background-color: darken($colorBase, 10);
     }
 
-    @media screen and (max-width: 800px){
-        width: 80%;
+    @media screen and (max-width: 800px) {
+      width: 80%;
     }
   }
 }
@@ -277,6 +351,10 @@ h2 {
   &__grid {
     display: flex;
     width: 100%;
+
+    @media screen and (max-width: 500px){
+      flex-direction: column;
+    }
   }
 
   &__cell {
@@ -284,6 +362,15 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    
+    @media screen and (max-width: 500px){
+      margin: 0 0 10px 0;
+
+      &:last-child{
+        margin: 0;
+      }
+    }
 
     &:nth-child(2) {
       position: relative;
@@ -303,6 +390,12 @@ h2 {
       &::after {
         right: 0;
       }
+
+      @media screen and (max-width: 500px){
+        &::before, &::after{
+          display: none;
+        }
+      }
     }
   }
 
@@ -318,6 +411,10 @@ h2 {
 .offer {
   &__wrapper {
     padding: 50px 0 80px 0;
+
+    @media screen and (max-width: 500px){
+      padding: 40px 0 20px 0;
+    }
   }
 
   &__headline-text {
@@ -355,6 +452,10 @@ h2 {
   &__grid {
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 500px){
+      flex-direction: column;
+    }
   }
 
   &__cell {
@@ -365,8 +466,9 @@ h2 {
     position: relative;
     cursor: pointer;
 
-    &:hover .offer__text, &:hover .offer__icon {
-        transform: scale(1.2);      
+    &:hover .offer__text,
+    &:hover .offer__icon {
+      transform: scale(1.2);
     }
 
     &.active {
@@ -388,6 +490,10 @@ h2 {
       width: 2px;
       background-color: $colorBase;
       right: 0;
+
+      @media screen and (max-width: 500px){
+        display: none;
+      }
     }
 
     &:last-child {
@@ -395,11 +501,30 @@ h2 {
         display: none;
       }
     }
+
+    @media screen and (max-width: 500px){
+
+      margin: 0 0 20px 0;
+
+      &:hover .offer__text,
+      &:hover .offer__icon {
+        transform: scale(1);
+      }
+      
+      &.active{
+        &:before{
+          display: none;
+        }
+      }
+
+    }
   }
 
   &__icon {
     transition-duration: 0.3s;
+    pointer-events: none;
     margin: 0 0 40px 0;
+
   }
 
   &__text {
@@ -408,6 +533,9 @@ h2 {
     text-transform: uppercase;
     text-align: center;
     transition-duration: 0.3s;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
   }
 }
 
@@ -428,21 +556,19 @@ h2 {
     display: flex;
     justify-content: space-between;
 
-    @media screen and (max-width: 800px){
-        flex-direction: column;
-        align-items: center;
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
     }
   }
 
-  &__cell{
-      position: relative;
+  &__cell {
+    position: relative;
   }
 
-  &__img{
-      width: 100%;
+  &__img {
+    width: 100%;
   }
-
-
 
   &__headline {
     font-weight: bold;
@@ -458,12 +584,12 @@ h2 {
     margin: 0 0 30px 0;
   }
 
-  &__btn{
-    @media screen and (max-width: 800px){
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }      
+  &__btn {
+    @media screen and (max-width: 800px) {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 }

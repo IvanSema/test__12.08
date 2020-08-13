@@ -21,7 +21,7 @@ grid.addEventListener('click', (event) => {
     console.log(target);
     
     tabs.forEach((elem, index) => {
-        if(elem === target || elem === target.parentElement){
+        if(elem === target){
             showTab(index);
         }
     })
