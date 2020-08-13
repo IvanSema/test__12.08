@@ -18,7 +18,6 @@ showTab();
 
 grid.addEventListener('click', (event) => {
     const target = event.target;
-    console.log(target);
     
     tabs.forEach((elem, index) => {
         if(elem === target){
